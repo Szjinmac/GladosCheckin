@@ -74,7 +74,7 @@ def checkin() -> CheckinResult:
                     message = data.get('message', '')
 
                     # 已签到情况
-                    if '已签到' in message or 'Please try tomorrow' in message or '已经签到' in message:
+                    if '已签到' in message or 'Please try tomorrow' in message or '已经签到' in message or "Today's observation logged" in message:
                         # 尝试获取状态信息
                         try:
                             status_resp = requests.get(GLADOS_STATUS_URL, headers=HEADERS, timeout=10)
