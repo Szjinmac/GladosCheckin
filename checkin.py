@@ -88,8 +88,13 @@ def checkin() -> CheckinResult:
 
                     # 签到成功
                     if data.get('code') == 0 or '成功' in message:
-                        days = data.get('list', {}).get('days', 0)
-                        balance = data.get('list', {}).get('balance', 0)
+                        list_data = data.get('list', {})
+                        if isinstance(list_data, dict):
+                            days = list_data.get('days', 0)
+                            balance = list_data.get('balance', 0)
+                        else:
+                            days = 0
+                            balance = 0
                         return CheckinResult(True, message, days, balance)
 
                     # 其他错误
